@@ -1,6 +1,6 @@
 import { ChevronDown, ChevronUp } from "../icons/icons";
 import cartStyles from "../styles/Cart.module.css";
-// import { Cart } from "../../model";
+import { useSelector } from "react-redux/es/hooks/useSelector";
 
 interface Cart {
   id: number;
@@ -10,7 +10,11 @@ interface Cart {
   price: string;
 }
 
-const SingleCart: React.FC<Cart> = ({ img, count, brand, price }) => {
+const SingleCart: React.FC<Cart> = ({ img, brand, price }) => {
+  const { count } = useSelector((store: any) => store.cartStore);
+
+  // console.log(numCount);
+
   return (
     <section>
       <div className={cartStyles.imgCon}>

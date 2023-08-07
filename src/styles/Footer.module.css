@@ -1,0 +1,17 @@
+.main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-inline: 20px;
+  text-align: center;
+}
+
+.main section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.main > button {
+  margin-top: 30px;
+}

@@ -1,4 +1,5 @@
 import Carts from "./components/Carts";
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 
 const App = () => {
@@ -6,6 +7,7 @@ const App = () => {
     <>
       <Header />
       <Carts />
+      <Footer />
     </>
   );
 };
