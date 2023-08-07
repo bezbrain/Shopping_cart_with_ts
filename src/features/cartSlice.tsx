@@ -26,19 +26,32 @@ const cartSlice = createSlice({
       }
       newCount.count = newCount.count + 1;
     },
+
     decreaseCount: (state, action) => {
       const newCount = state.cartArr.find((each) => each.id === action.payload);
-      if (newCount.count === 0) {
-        newCount.count = 0;
+      if (newCount.count === 1) {
+        const newItems = state.cartArr.filter(
+          (each) => each.id !== action.payload
+        );
+
+        state.cartArr = newItems;
         return;
       }
       newCount.count = newCount.count - 1;
+    },
+
+    removeItem: (state, action) => {
+      const newItems = state.cartArr.filter(
+        (each) => each.id !== action.payload
+      );
+
+      state.cartArr = newItems;
     },
   },
 });
 
 console.log(cartSlice);
 
-export const { increaseCount, decreaseCount } = cartSlice.actions;
+export const { increaseCount, decreaseCount, removeItem } = cartSlice.actions;
 
 export default cartSlice.reducer;
