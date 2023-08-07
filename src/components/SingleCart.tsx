@@ -1,7 +1,7 @@
 import { ChevronDown, ChevronUp } from "../icons/icons";
 import cartStyles from "../styles/Cart.module.css";
 import { useDispatch } from "react-redux/es/hooks/useDispatch";
-import { increaseCount } from "../features/cartSlice";
+import { decreaseCount, increaseCount } from "../features/cartSlice";
 
 interface Cart {
   id: number;
@@ -32,7 +32,10 @@ const SingleCart: React.FC<Cart> = ({ id, img, brand, price, count }) => {
           <ChevronUp />
         </div>
         <p>{count}</p>
-        <div className={cartStyles.icon}>
+        <div
+          className={cartStyles.icon}
+          onClick={() => dispatch(decreaseCount(id))}
+        >
           <ChevronDown />
         </div>
       </div>

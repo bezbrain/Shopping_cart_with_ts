@@ -26,11 +26,19 @@ const cartSlice = createSlice({
       }
       newCount.count = newCount.count + 1;
     },
+    decreaseCount: (state, action) => {
+      const newCount = state.cartArr.find((each) => each.id === action.payload);
+      if (newCount.count === 0) {
+        newCount.count = 0;
+        return;
+      }
+      newCount.count = newCount.count - 1;
+    },
   },
 });
 
 console.log(cartSlice);
 
-export const { increaseCount } = cartSlice.actions;
+export const { increaseCount, decreaseCount } = cartSlice.actions;
 
 export default cartSlice.reducer;
