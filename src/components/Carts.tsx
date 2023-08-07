@@ -1,12 +1,16 @@
 import SingleCart from "./SingleCart";
 import cartStyles from "../styles/Cart.module.css";
-import { data } from "../data";
+import { useSelector } from "react-redux/es/hooks/useSelector";
 
 const Carts = () => {
+  const { cartArr } = useSelector((store: any) => store.cartStore);
+
+  // console.log(cartArr);
+
   return (
     <main className={cartStyles.main}>
       <p>YOUR BAG</p>
-      {data.map((each) => {
+      {cartArr.map((each: any) => {
         return <SingleCart key={each.id} {...each} />;
       })}
     </main>

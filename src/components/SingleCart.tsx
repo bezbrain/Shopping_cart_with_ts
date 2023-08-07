@@ -1,6 +1,7 @@
 import { ChevronDown, ChevronUp } from "../icons/icons";
 import cartStyles from "../styles/Cart.module.css";
-import { useSelector } from "react-redux/es/hooks/useSelector";
+import { useDispatch } from "react-redux/es/hooks/useDispatch";
+import { increaseCount } from "../features/cartSlice";
 
 interface Cart {
   id: number;
@@ -10,10 +11,8 @@ interface Cart {
   price: string;
 }
 
-const SingleCart: React.FC<Cart> = ({ img, brand, price }) => {
-  const { count } = useSelector((store: any) => store.cartStore);
-
-  // console.log(numCount);
+const SingleCart: React.FC<Cart> = ({ id, img, brand, price, count }) => {
+  const dispatch = useDispatch();
 
   return (
     <section>
@@ -26,7 +25,10 @@ const SingleCart: React.FC<Cart> = ({ img, brand, price }) => {
         <button>remove</button>
       </div>
       <div className={cartStyles.count}>
-        <div className={cartStyles.icon}>
+        <div
+          className={cartStyles.icon}
+          onClick={() => dispatch(increaseCount(id))}
+        >
           <ChevronUp />
         </div>
         <p>{count}</p>
