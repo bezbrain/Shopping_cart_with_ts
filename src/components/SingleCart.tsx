@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { ChevronDown, ChevronUp } from "../icons/icons";
 import cartStyles from "../styles/Cart.module.css";
 import { useDispatch } from "react-redux/es/hooks/useDispatch";
@@ -6,6 +7,7 @@ import {
   increaseCount,
   removeItem,
 } from "../features/cartSlice";
+import { useSelector } from "react-redux";
 
 interface Cart {
   id: number;
@@ -16,6 +18,7 @@ interface Cart {
 }
 
 const SingleCart: React.FC<Cart> = ({ id, img, brand, price, count }) => {
+  const { cartArr } = useSelector((store: any) => store.cartStore);
   const dispatch = useDispatch();
 
   return (

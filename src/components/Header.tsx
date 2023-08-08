@@ -10,7 +10,7 @@ const Header = () => {
 
   // console.log(cartArr);
   const handleShoppingCount = () => {
-    let sum = 0;
+    let sum: number = 0;
     cartArr.forEach((each: any) => {
       sum += each.count;
     });
