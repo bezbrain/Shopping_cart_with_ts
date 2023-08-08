@@ -1,8 +1,12 @@
 import { useSelector } from "react-redux/es/exports";
 import footerStyles from "../styles/Footer.module.css";
+import { useDispatch } from "react-redux/es/exports";
+import { clearItems } from "../features/cartSlice";
 
 const Footer = () => {
   const { total } = useSelector((store: any) => store.cartStore);
+
+  const dispatch = useDispatch();
 
   return (
     <main className={footerStyles.main}>
@@ -11,7 +15,7 @@ const Footer = () => {
         <p>Total</p>
         <button>${total}</button>
       </section>
-      <button>Clear Cart</button>
+      <button onClick={() => dispatch(clearItems())}>Clear Cart</button>
     </main>
   );
 };
