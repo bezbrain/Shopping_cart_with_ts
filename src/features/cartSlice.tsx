@@ -13,6 +13,11 @@ const initialState: State = {
   total: 0,
 };
 
+// Function to handle remove item
+const handleRemoveItem = (arr: Array<any>, action: number) => {
+  return arr.filter((each) => each.id !== action);
+};
+
 const cartSlice = createSlice({
   name: "cart",
   initialState,
@@ -30,22 +35,14 @@ const cartSlice = createSlice({
     decreaseCount: (state, action) => {
       const newCount = state.cartArr.find((each) => each.id === action.payload);
       if (newCount.count === 1) {
-        const newItems = state.cartArr.filter(
-          (each) => each.id !== action.payload
-        );
-
-        state.cartArr = newItems;
+        state.cartArr = handleRemoveItem(state.cartArr, action.payload);
         return;
       }
       newCount.count = newCount.count - 1;
     },
 
     removeItem: (state, action) => {
-      const newItems = state.cartArr.filter(
-        (each) => each.id !== action.payload
-      );
-
-      state.cartArr = newItems;
+      state.cartArr = handleRemoveItem(state.cartArr, action.payload);
     },
 
     clearItems: (state) => {
